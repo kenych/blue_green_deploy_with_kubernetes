@@ -127,8 +127,8 @@ spec:
 * pipeline_clean.sh - prepare env with version 1
 * pipeline_ci_run.sh - imitate upstream updated docker image, enter new version
 * pipeline_update.sh [arg - default 'OK', if not test will fail] - deploys new version from upstream
-* client.sh - run from inside cluster (minikube) to send retriable get requests to app
-* test.sh - run from inside cluster (minikube) to test app (expects 'ok' to be returned as a response)
+* client.sh - run from inside cluster (minikube mount cur_dir:/tmp; minikube ssh; cp /tmp/client.sh .; ./client.sh) to send retriable get requests to app
+* test.sh - run from inside cluster (minikube - same as for client.sh) to test app (expects 'ok' to be returned as a response)
 * pipeline_revert_green.sh - run if tests failed to revert to previous version
 * pipeline_approve_green.sh - run if deployment was successful, sort of commit in transactional db, gets read of old/new second deployment
 

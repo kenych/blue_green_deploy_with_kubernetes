@@ -37,7 +37,7 @@ echo "update deployments..."
 kubectl apply -f busybox_dep_dynamic.yaml && kubectl get -f busybox_dep_dynamic.yaml
 
 #todo do some health checks here
-sleep 1
+#sleep 5
 
 # even with patch client attempt can fail(needs to be retried)
 # kubectl patch svc busybox1 -p '{"spec": {"selector": {"deployment": "busybox", "version": "'$(echo $VERSION)'"}}}'
