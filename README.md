@@ -19,7 +19,7 @@ non backward APIs is an issue
 no way to control version in use(current version) as it gradually rolled out and replaced by newer replicas
 
 
-##blue/green deploy a new version which runs in parallel with old version, do health-check, if ok, switch traffic
+## blue/green deploy a new version which runs in parallel with old version, do health-check, if ok, switch traffic
 
 
 **Pros:**
