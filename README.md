@@ -1,6 +1,6 @@
-#Possible k8s deployment strategies 
+# Possible k8s deployment strategies 
         
-##Delete/create(recreate): delete all, then create from scratch
+## Delete/create(recreate): delete all, then create from scratch
 
 **Pros:**
 Ability to deploy everything together, once it is proved to be working in some env
@@ -9,7 +9,7 @@ Ability to deploy everything together, once it is proved to be working in some e
 Obviously there is a downtime involved, and it may take a while when all apps redeployed and up and running
 
 
-##Rolling update: release new version by adding more replicas until new replicas equal desired replicas
+## Rolling update: release new version by adding more replicas until new replicas equal desired replicas
 
 **Pros:**
 no downtime, version is updated replica by replica automatically, easier to automate deployment
@@ -28,7 +28,7 @@ no downtime, instant switch over new/old version, API compatibility tolerant
 **Cons:**
 requires more resources, more testing, time and logic in place to control the switch
 
-##Canary: deploy new version in a smaller chunks for smaller amount of users, if ok, the do full rollout 
+## Canary: deploy new version in a smaller chunks for smaller amount of users, if ok, the do full rollout 
 
 **Pros:**
 no downtime, only part of users affected if something goes wrong
@@ -37,9 +37,9 @@ no downtime, only part of users affected if something goes wrong
 not easy to implement, not available out of box (with pure kubectl) and requires sophisticated tools 
 
  
-#Blue/green implementation with pure kubectl 
+# Blue/green implementation with pure kubectl 
 
-##K8s resources need additional label for version and deployment name needs suffix so we can have 2 deployments of same app running at the same time
+## K8s resources need additional label for version and deployment name needs suffix so we can have 2 deployments of same app running at the same time
 
 * Update selector with application (deployment) name and version:
 service:
@@ -112,7 +112,7 @@ spec:
       terminationGracePeriodSeconds: 30
 ```
 
-##Pipeline stages
+## Pipeline stages
 
 * Deploy new
 * Do health check
@@ -121,7 +121,7 @@ spec:
 * if tests are OK, remove old(blue)
 * if tests are NO OK, SWITCH traffic back to old(blue) and remove green(new) and redeployed once fixed a newer version
 
-##Demo
+## Demo
 
 ### with pipeline:
 * pipeline_clean.sh - prepare env with version 1
@@ -136,8 +136,8 @@ spec:
 * play this first https://asciinema.org/a/Xrd7WwAVmgIoLa4ngxVShw6ro
 * then in another window after 5 seconds(sorry for lag :) https://asciinema.org/a/AeXQgdMEspTattivwYYKDpZE4
 
-##Useful read 
+## Useful read 
 ... and thanks for strategy diagrams to: http://container-solutions.com/kubernetes-deployment-strategies/
 
-#Is helm going to helm with helm blue green? - no..
+# Is helm going to helm with helm blue green? - no..
 https://github.com/kubernetes/helm/issues/3518
